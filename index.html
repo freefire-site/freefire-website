@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>99% Headshot Panel</title>
+<title>100% Headshot Panel</title>
 
 <style>
 body{
@@ -48,37 +48,39 @@ padding:15px;
 border-radius:10px;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🎯 99% Headshot Panel</h1>
+<h1>🎯 100% Headshot Panel</h1>
 
 <input type="number" id="kills" placeholder="Total Kills">
 
-<button onclick="calculate()">Generate 99% Stats</button>
+<button onclick="generateStats()">Generate 100% Stats</button>
 
 <div class="stats">
 <p>Total Kills: <span id="showKills">0</span></p>
 <p>Headshots: <span id="showHeadshots">0</span></p>
-<p>Headshot Rate: <span id="rate">99%</span></p>
+<p>Headshot Rate: <span id="rate">100%</span></p>
 </div>
 
 </div>
 
 <script>
-function calculate(){
+function generateStats(){
 
 let kills = document.getElementById("kills").value || 0;
 
-// 99% headshot calculation
-let headshots = Math.floor(kills * 0.99);
+// 100% headshot = kills ke equal
+let headshots = kills;
 
 document.getElementById("showKills").innerText = kills;
 document.getElementById("showHeadshots").innerText = headshots;
-document.getElementById("rate").innerText = "99%";
+document.getElementById("rate").innerText = "100%";
+
 }
 </script>
 
