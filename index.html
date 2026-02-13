@@ -1,146 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pro Panel</title>
+<title>99% Headshot Panel</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#000,#111,#000);
+font-family: Arial;
+background:#0f172a;
 color:white;
+margin:0;
+}
+
+.container{
+width:350px;
+margin:80px auto;
+background:#1e293b;
+padding:20px;
+border-radius:12px;
 text-align:center;
 }
 
-/* box */
-.container{
-margin:120px auto;
-width:90%;
-max-width:400px;
-background:#111;
-padding:30px;
-border-radius:15px;
-box-shadow:0 0 40px red;
+h1{
+color:#22c55e;
 }
 
-/* input */
 input{
 width:90%;
-padding:12px;
-margin:15px 0;
+padding:10px;
+margin:10px 0;
 border:none;
-border-radius:8px;
-font-size:16px;
+border-radius:6px;
 }
 
-/* button */
 button{
-padding:12px 25px;
+padding:10px 20px;
+background:#22c55e;
 border:none;
-background:red;
-color:white;
-font-size:18px;
-border-radius:8px;
+border-radius:6px;
 cursor:pointer;
-transition:0.3s;
+color:white;
 }
 
-button:hover{
-background:#ff3333;
-}
-
-/* loading */
-.loading{
-display:none;
+.stats{
 margin-top:20px;
+background:#020617;
+padding:15px;
+border-radius:10px;
 }
-
-/* popup */
-.popup{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#111;
-padding:30px;
-border-radius:15px;
-box-shadow:0 0 40px red;
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-<h1>🔥 Pro Panel</h1>
-<p>Enter your UID</p>
 
-<input type="number" id="uid" placeholder="Enter UID">
+<h1>🎯 99% Headshot Panel</h1>
 
-<button onclick="activateUID()">
-Activate Panel
-</button>
-</button>
-<div class="loading" id="loading">
-⏳ Processing...
+<input type="number" id="kills" placeholder="Total Kills">
+
+<button onclick="calculate()">Generate 99% Stats</button>
+
+<div class="stats">
+<p>Total Kills: <span id="showKills">0</span></p>
+<p>Headshots: <span id="showHeadshots">0</span></p>
+<p>Headshot Rate: <span id="rate">99%</span></p>
 </div>
+
 </div>
-"
-<div class="popup" id="popup">
-<h2>✅ Activated Successfully</h2>
-<p>Welcome to Dashboard</p>
-<br>
-<button onclick="window.location.href='dashboard.html'">Open Dashboard</button>
 
 <script>
+function calculate(){
 
-function startPanel(){
-let uid=document.getElementById("uid").value;
+let kills = document.getElementById("kills").value || 0;
 
-if(uid==""){
-alert("Enter UID first");
-return;
-}
+// 99% headshot calculation
+let headshots = Math.floor(kills * 0.99);
 
-document.getElementById("loading").style.display="block";
-
-setTimeout(()=>{
-document.getElementById("loading").style.display="none";
-document.getElementById("popup").style.display="block";
-},3000);
-}
-
-function goDashboard(){
-asset";
-}
-<script>
-function activateUID(){
-let uid = document.getElementById("uid").value;
-localStorage.setItem("uid", uid);
-window.location.href = "pro.html";
+document.getElementById("showKills").innerText = kills;
+document.getElementById("showHeadshots").innerText = headshots;
+document.getElementById("rate").innerText = "99%";
 }
 </script>
-</script>
-<script>
-let uid = localStorage.getItem("uid");
 
-if(uid){
-document.getElementById("uidShow").innerText = "UID: " + uid;
-}
-<script>
-let uid = localStorage.getItem("uid");
-
-if(uid){
-document.getElementById("uidShow").innerText = "UID: " + uid;
-}
-</script
 </body>
-<script>
-function activateUID(){
-let uid = document.getElementById("uid").value;
-localStorage.setItem("uid", uid);
-window.location.href = "pro.html";
-}
-</script>
+</html>
