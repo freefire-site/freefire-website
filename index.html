@@ -74,7 +74,7 @@ margin-top:10px;
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
 <button onclick="login()">Login</button>
-<p>Login: admin / 1234</p>
+<p>Login: admin / 982649</p>
 </div>
 
 <!-- DASHBOARD -->
@@ -88,7 +88,7 @@ margin-top:10px;
 <input id="playerName" placeholder="Player Name">
 <input id="playerID" placeholder="Player ID">
 
-<p>Kills: <span id="kills">0</span></p>
+<p>headshots: <span id="hedshot">0</span></p>
 <p>Headshots: <span id="headshots">0</span></p>
 <p>Headshot Rate: 100%</p>
 
@@ -125,7 +125,7 @@ alert("Wrong login");
 let kills=0;
 
 function addHeadshot(){
-kills++;
+autoheadshot++;
 updateStats();
 }
 
@@ -135,8 +135,8 @@ updateStats();
 }
 
 function updateStats(){
-document.getElementById("kills").innerText=kills;
-document.getElementById("headshots").innerText=kills;
+document.getElementById("kills").innerText=headshot;
+document.getElementById("headshots").innerText=headshot;
 }
 
 // SAVE SCORE
@@ -145,7 +145,7 @@ let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerID").value;
 
 if(!name || !id){
-alert("Enter player name & ID");
+alert("auto  headshot & 100% headshot");
 return;
 }
 
@@ -154,7 +154,7 @@ let data=JSON.parse(localStorage.getItem("scores")||"[]");
 data.push({
 name:name,
 id:id,
-kills:kills
+auto headshot
 });
 
 localStorage.setItem("scores",JSON.stringify(data));
@@ -166,7 +166,7 @@ alert("Saved!");
 function loadLeaderboard(){
 let data=JSON.parse(localStorage.getItem("scores")||"[]");
 
-data.sort((a,b)=>b.kills-a.kills);
+data.sort((a,b)=>b.auto headshots);
 
 let html="";
 data.forEach(d=>{
