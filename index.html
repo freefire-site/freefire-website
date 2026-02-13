@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>100% Headshot Panel</title>
+<title>Pro Headshot Panel</title>
 
 <style>
 body{
@@ -11,17 +11,14 @@ color:white;
 margin:0;
 }
 
-.container{
-width:350px;
-margin:80px auto;
+/* login */
+.login{
+width:300px;
+margin:120px auto;
 background:#1e293b;
 padding:20px;
 border-radius:12px;
 text-align:center;
-}
-
-h1{
-color:#22c55e;
 }
 
 input{
@@ -41,47 +38,144 @@ cursor:pointer;
 color:white;
 }
 
-.stats{
-margin-top:20px;
+/* dashboard */
+.dashboard{
+display:none;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+margin:10px;
+text-align:center;
+}
+
+.container{
+max-width:400px;
+margin:auto;
+}
+
+.leaderboard{
 background:#020617;
-padding:15px;
+padding:10px;
 border-radius:10px;
+margin-top:10px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>🎯 100% Headshot Panel</h1>
-
-<input type="number" id="kills" placeholder="Total Kills">
-
-<button onclick="generateStats()">Generate 100% Stats</button>
-
-<div class="stats">
-<p>Total Kills: <span id="showKills">0</span></p>
-<p>Headshots: <span id="showHeadshots">0</span></p>
-<p>Headshot Rate: <span id="rate">100%</span></p>
+<!-- LOGIN -->
+<div class="login" id="loginBox">
+<h2>🔐 Panel Login</h2>
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p>Login: admin / 1234</p>
 </div>
 
+<!-- DASHBOARD -->
+<div class="dashboard" id="panel">
+
+<div class="container">
+
+<div class="card">
+<h2>🎯 Only Headshot Panel</h2>
+
+<input id="playerName" placeholder="Player Name">
+<input id="playerID" placeholder="Player ID">
+
+<p>Kills: <span id="kills">0</span></p>
+<p>Headshots: <span id="headshots">0</span></p>
+<p>Headshot Rate: 100%</p>
+
+<button onclick="addHeadshot()">Add Headshot</button>
+<button onclick="saveScore()">Save Score</button>
+<button onclick="resetStats()">Reset</button>
+</div>
+
+<div class="card">
+<h3>🏆 Leaderboard</h3>
+<div id="leaderboard" class="leaderboard"></div>
+</div>
+
+</div>
 </div>
 
 <script>
-function generateStats(){
 
-let kills = document.getElementById("kills").value || 0;
+// LOGIN
+function login(){
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
 
-// 100% headshot = kills ke equal
-let headshots = kills;
-
-document.getElementById("showKills").innerText = kills;
-document.getElementById("showHeadshots").innerText = headshots;
-document.getElementById("rate").innerText = "100%";
-
+if(u==="admin" && p==="1234"){
+loginBox.style.display="none";
+panel.style.display="block";
+loadLeaderboard();
+}else{
+alert("Wrong login");
 }
+}
+
+// STATS
+let kills=0;
+
+function addHeadshot(){
+kills++;
+updateStats();
+}
+
+function resetStats(){
+kills=0;
+updateStats();
+}
+
+function updateStats(){
+document.getElementById("kills").innerText=kills;
+document.getElementById("headshots").innerText=kills;
+}
+
+// SAVE SCORE
+function saveScore(){
+let name=document.getElementById("playerName").value;
+let id=document.getElementById("playerID").value;
+
+if(!name || !id){
+alert("Enter player name & ID");
+return;
+}
+
+let data=JSON.parse(localStorage.getItem("scores")||"[]");
+
+data.push({
+name:name,
+id:id,
+kills:kills
+});
+
+localStorage.setItem("scores",JSON.stringify(data));
+loadLeaderboard();
+alert("Saved!");
+}
+
+// LOAD LEADERBOARD
+function loadLeaderboard(){
+let data=JSON.parse(localStorage.getItem("scores")||"[]");
+
+data.sort((a,b)=>b.kills-a.kills);
+
+let html="";
+data.forEach(d=>{
+html+=`<p>${d.name} (ID:${d.id}) - ${d.kills} HS</p>`;
+});
+
+document.getElementById("leaderboard").innerHTML=html;
+}
+
 </script>
 
 </body>
