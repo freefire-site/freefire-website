@@ -27,8 +27,14 @@ box-shadow:0 0 40px red;
 
 <div class="box">
 <h1>🔥 Dashboard</h1>
-<p>Panel Activated Successfully</p>
+<h3 id="uidShow"></h3>
 </div>
+<script>
+let uid = localStorage.getItem("uid");
 
+if(uid){
+document.getElementById("uidShow").innerText = "UID: " + uid;
+}
+</script>
 </body>
 </html>
