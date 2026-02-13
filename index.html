@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Free Fire Pro Panel</title>
+<title>Pro Panel</title>
 
 <style>
 body{
@@ -12,20 +12,18 @@ color:white;
 text-align:center;
 }
 
+/* box */
 .container{
-margin:80px auto;
+margin:120px auto;
 width:90%;
 max-width:400px;
 background:#111;
 padding:30px;
 border-radius:15px;
-box-shadow:0 0 25px red;
+box-shadow:0 0 40px red;
 }
 
-h1{
-color:red;
-}
-
+/* input */
 input{
 width:90%;
 padding:12px;
@@ -35,6 +33,7 @@ border-radius:8px;
 font-size:16px;
 }
 
+/* button */
 button{
 padding:12px 25px;
 border:none;
@@ -50,49 +49,73 @@ button:hover{
 background:#ff3333;
 }
 
+/* loading */
 .loading{
 display:none;
-margin-top:15px;
+margin-top:20px;
 }
-</style>
 
+/* popup */
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#111;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 40px red;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="container">
-<h1>🔥 Free Fire Pro Panel</h1>
-
+<h1>🔥 Pro Panel</h1>
 <p>Enter your UID</p>
 
-<input type="number" id="uid" placeholder="Free Fire UID">
+<input type="number" id="uid" placeholder="Enter UID">
 
 <br>
-
 <button onclick="startPanel()">Activate Panel</button>
 
 <div class="loading" id="loading">
 ⏳ Processing...
 </div>
+</div>
 
+<div class="popup" id="popup">
+<h2>✅ Activated Successfully</h2>
+<p>Welcome to Dashboard</p>
+<br>
+<button onclick="goDashboard()">Open Dashboard</button>
 </div>
 
 <script>
+
 function startPanel(){
-let uid = document.getElementById("uid").value;
+let uid=document.getElementById("uid").value;
 
 if(uid==""){
-alert("UID enter karo");
+alert("Enter UID first");
 return;
 }
 
 document.getElementById("loading").style.display="block";
 
 setTimeout(()=>{
-alert("Headshot Panel Activated 🔥");
 document.getElementById("loading").style.display="none";
-},2000);
+document.getElementById("popup").style.display="block";
+},3000);
 }
+
+function goDashboard(){
+window.location="dashboard.html";
+}
+
 </script>
 
 </body>
