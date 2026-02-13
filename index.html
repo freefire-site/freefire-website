@@ -85,7 +85,7 @@ box-shadow:0 0 40px red;
 ⏳ Processing...
 </div>
 </div>
-window.location.href="pro.html"
+"
 <div class="popup" id="popup">
 <h2>✅ Activated Successfully</h2>
 <p>Welcome to Dashboard</p>
@@ -113,7 +113,13 @@ document.getElementById("popup").style.display="block";
 function goDashboard(){
 asset";
 }
-
+<script>
+function activateUID(){
+let uid = document.getElementById("uid").value;
+localStorage.setItem("uid", uid);
+window.location.href = "pro.html";
+}
+</script>
 </script>
 <script>
 let uid = localStorage.getItem("uid");
