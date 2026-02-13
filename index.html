@@ -111,7 +111,7 @@ document.getElementById("popup").style.display="block";
 }
 
 function goDashboard(){
-window.location="dashboard.html";
+asset";
 }
 
 </script>
@@ -129,4 +129,10 @@ document.getElementById("uidShow").innerText = "UID: " + uid;
 }
 </script
 </body>
-</html>
+<script>
+function activateUID(){
+let uid = document.getElementById("uid").value;
+localStorage.setItem("uid", uid);
+window.location.href = "pro.html";
+}
+</script>
