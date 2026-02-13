@@ -1,11 +1,99 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Free Fire Panel</title>
+<title>Free Fire Pro Panel</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#000,#111,#000);
+color:white;
+text-align:center;
+}
+
+.container{
+margin:80px auto;
+width:90%;
+max-width:400px;
+background:#111;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 25px red;
+}
+
+h1{
+color:red;
+}
+
+input{
+width:90%;
+padding:12px;
+margin:15px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+background:red;
+color:white;
+font-size:18px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#ff3333;
+}
+
+.loading{
+display:none;
+margin-top:15px;
+}
+</style>
+
 </head>
-<body style="background:black;color:white;text-align:center;">
-<h1>🔥 Free Fire Headshot Panel</h1>
-<p>Website live ho gayi 🚀</p>
+
+<body>
+
+<div class="container">
+<h1>🔥 Free Fire Pro Panel</h1>
+
+<p>Enter your UID</p>
+
+<input type="number" id="uid" placeholder="Free Fire UID">
+
+<br>
+
+<button onclick="startPanel()">Activate Panel</button>
+
+<div class="loading" id="loading">
+⏳ Processing...
+</div>
+
+</div>
+
+<script>
+function startPanel(){
+let uid = document.getElementById("uid").value;
+
+if(uid==""){
+alert("UID enter karo");
+return;
+}
+
+document.getElementById("loading").style.display="block";
+
+setTimeout(()=>{
+alert("Headshot Panel Activated 🔥");
+document.getElementById("loading").style.display="none";
+},2000);
+}
+</script>
+
 </body>
 </html>
